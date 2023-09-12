@@ -1,10 +1,11 @@
 package com.catalisa.biblioteca.service;
 
 import com.catalisa.biblioteca.model.UserModel;
+import com.catalisa.biblioteca.model.dtos.UserDTO;
 import com.catalisa.biblioteca.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,15 @@ public class UserService {
     UserRepository userRepository;
 
     // lista todos os usuários
-    public List<UserModel> buscarTodos(){
-        return userRepository.findAll();
+    public List<UserDTO> buscarTodos(){
+        List<UserModel> usuarios = userRepository.findAll();
+        List<UserDTO> usuarioDTO = new ArrayList<>();
+
+        for(UserModel usuario: usuarios){
+            usuarioDTO.add(new UserDTO(usuario));
+        }
+
+        return usuarioDTO;
     }
 
     // busca um usuário por ID

@@ -1,6 +1,7 @@
 package com.catalisa.biblioteca.controller;
 
 import com.catalisa.biblioteca.model.UserModel;
+import com.catalisa.biblioteca.model.dtos.UserDTO;
 import com.catalisa.biblioteca.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserController {
     UserService userService;
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping
-    public List<UserModel> listarTodosOsUsers(){
+    public List<UserDTO> listarTodosOsUsers(){
         return userService.buscarTodos();
     }
 
